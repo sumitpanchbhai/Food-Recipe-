@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;margin:10%">
+    <h1>{{title}}</h1>
+    <div style="display: flex; flex-direction: column; width: 40%; border: 1px solid black; padding: 2%;">
+        <input style="padding: 10px; margin: 10px 0;" type="text" placeholder="Username"/>
+        <input style="padding: 10px; margin: 10px 0;" type="password" placeholder="Password"/>
+        <button style="background-color: #28a745;padding: 10px; margin: 10px 0; cursor: pointer;">SUBMIT</button>
+    </div>
+    <div style="margin-left: 20px; display: flex; justify-content: center;">
+        <a href="/contact/" style="margin: 5px 5px;">CONTACT</a>
+        <a href="/about/" style="margin: 5px 0;">ABOUT</a>
+    </div>
+</div>
+{% endblock %}
+

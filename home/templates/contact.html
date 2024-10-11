@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-container">
+        <h2 style="text-align: center;">{{title}}</h2>
+        <form>
+            <input type="text" placeholder="Name" required />
+            <select required>
+            {% for  value,key in locations.items %}
+                <option value="{{ value }}">{{ key }}</option>
+            {% endfor %}
+            </select>
+            <input type="tel" placeholder="Phone Number" required />
+            <input type="text" placeholder="Address" required />
+            <textarea rows="4" placeholder="Additional Comments"></textarea>
+            <button type="submit">SUBMIT</button>
+             <button><a href="/">Back to Home</a></button>
+        </form>
+    </div>
+
+<style>
+    a {
+            margin-top: 20px;
+            color:white;
+            text-decoration: none;
+        }
+    .form-container {
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+     input, select, textarea {
+            width:100%;
+            padding:1% 0 1%;
+            margin:1%
+         }
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+</style>
+
+{% endblock %}
+
