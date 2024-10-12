@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
     <div style="max-width: 40%; margin: auto; padding: 20px;">
-        <h1 style="text-align: center; color: #333;">Submit Your Information</h1>
+        <h1 style="text-align: center; color: #333;">Create Your Favorite Recipe!</h1>
         <form method="post" enctype="multipart/form-data" style="background: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
             {% csrf_token %}
             <div style="margin-bottom: 15px;">
-                <label for="textField" style="font-weight: bold;">Text Field</label>
+                <label for="textField" style="font-weight: bold;">Recipe Name</label>
                 <input type="text" id="textField" name="recipe_name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
             </div>
             <div style="margin-bottom: 15px;">
-                <label for="textArea" style="font-weight: bold;">Text Area</label>
+                <label for="textArea" style="font-weight: bold;">Recipe Process</label>
                 <textarea id="textArea" name="recipe_desciption" rows="4" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
             </div>
             <div style="margin-bottom: 15px;">
-                <label for="fileUpload" style="font-weight: bold;">File Upload</label>
+                <label for="fileUpload" style="font-weight: bold;">Image Upload</label>
                 <input type="file" id="fileUpload" name="recipe_image" required style="padding: 10px;">
             </div>
             <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
@@ -21,25 +21,40 @@
     </div>
 
     <div style="max-width: 80%; margin: 20px auto; display: flex; justify-content: center;">
+        <div>
+
+        <form method="GET" style="display:flex;justify-content: center;">
+        <input type="text" name="search_val" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"/>
+            <button style="background-color: #3d37d8; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer;">Search</button>
+
+         </form>
+
         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tr style="background-color: #4CAF50;color:white">
-                <th style="padding: 10px; text-align: centre; border: 5px solid #ddd;">Recipe Name</th>
-                <th style="padding: 10px; text-align: centre; border: 5px solid #ddd;">Recipe Process</th>
-                <th style="padding: 10px; text-align: centre; border: 5px solid #ddd;">Image</th>
-                <th style="padding: 10px; text-align: centre; border: 5px solid #ddd;">Action</th>
+                <th style="padding: 10px; text-align: centre; border: 1px solid black">Recipe Name</th>
+                <th style="padding: 10px; text-align: centre; border: 1px solid black">Recipe Process</th>
+                <th style="padding: 10px; text-align: centre; border: 1px solid black">Image</th>
+                <th style="padding: 10px; text-align: centre; border: 1px solid black">Action</th>
             </tr>
             {% for value in data %}
             <tr>
-                <td style="padding: 10px; border: 5px solid #ddd;">{{ value.recipe_name }}</td>
-                <td style="padding: 10px; border: 5px solid #ddd;">{{ value.recipe_desciption }}</td>
-                <td style="padding: 10px; border: 5px solid #ddd;">
+                <td style="padding: 10px; border: 1px solid black;">{{ value.recipe_name }}</td>
+                <td style="padding: 10px; border: 1px solid black;">{{ value.recipe_desciption }}</td>
+                <td style="padding: 10px; border: 1px solid black;">
                     <img src="/media/{{ value.recipe_image }}" style="width: 200px; height: auto; border-radius: 4px;" />
                 </td>
-                <td style="padding: 10px; border: 5px solid #ddd;"><button style="background-color: #e74c3c; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;">
-                    <a href="/delete_recipe/{{value.id}}">Remove</a> </button></td>
+                <td style="padding: 10px; border: 1px solid black;">
+                    <div style="display: flex;flex-direction: column;">
+                    <button style="margin:10px;background-color: #e74c3c; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;"><a style="    color: wheat;
+    text-decoration: none;" href="/delete_recipe/{{value.id}}">Delete</a> </button>
+                    <button style="margin:10px;background-color: #4CAF50; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer;"><a style="    color: wheat;
+    text-decoration: none;" href="/update_recipe/{{value.id}}">Update</a> </button>
+                    </div>
+                </td>
             </tr>
             {% endfor %}
         </table>
+        </div>
     </div>
 
     <style>
