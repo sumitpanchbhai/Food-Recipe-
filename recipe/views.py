@@ -27,8 +27,7 @@ def recipe(request):
 def delete_recipe(request,id):
     recipe = Recipe.objects.get(id=id)
     recipe.delete()
-    data = Recipe.objects.all()
-    return render(request, 'recipe.html', context={'data': data})
+    return redirect('/recipe/')
 
 def update_recipe(request,id):
     updating_recipe = Recipe.objects.get(id=id)
@@ -46,8 +45,7 @@ def update_recipe(request,id):
         updating_recipe.recipe_image = updating_recipe.recipe_image
         updating_recipe.save()
         # Redirect or return a response
-        data = Recipe.objects.all()
-        return render(request, 'recipe.html', context={'data': data})
+        return redirect('/recipe/')
 
     return render(request, 'updateRecipe.html', context={'data': updating_recipe})
 
@@ -68,8 +66,8 @@ def loginPage(request):
         if user is not None:
             # If authentication is successful, log the user in
             login(request, user)
-            context = Recipe.objects.all()
-            return render(request, 'recipe.html', context={'data': context})
+            # context = Recipe.objects.all()
+            return redirect('/recipe/')
         else:
             # Optionally, you can add a message for invalid login
             error_message = "Invalid username or password."
