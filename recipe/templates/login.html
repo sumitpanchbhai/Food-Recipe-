@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;margin:10%">
+    <h1>{{title}}</h1>
+    <form method="POST"  style="display: flex; flex-direction: column; width: 40%; border: 1px solid black; padding: 2%;">
+        {% csrf_token %}
+        <input style="padding: 10px; margin: 10px 0;" name="username" type="text" placeholder="Username"/>
+        <input style="padding: 10px; margin: 10px 0;" name="password" type="password" placeholder="Password"/>
+        <button type="submit" style="background-color: #28a745;padding: 10px; margin: 10px 0; cursor: pointer;">SUBMIT</button>
+</form>
+</div>
+{% endblock %}
+
